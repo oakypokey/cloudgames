@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Alien Attack</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+<canvas id="game-canvas" width="640" height="640"></canvas>
+<div class="break">
+  <img class="logo" src="./IBM_White.png" />
+</div>
+
+<!-- partial -->
+  <script>
+    var reset1 = false;
+    var reset2 = false;
+
+    var checkReset = function(reset1, reset2){
+      if(reset1 && reset2){
+        window.location.reload();
+      }
+    }
+
+    var handleDownpress = function(e){
+      if(e.keyCode == 52){
+        reset1 = true;
+        checkReset(reset1, reset2)
+      } else if (e.keyCode == 53){
+        reset2 = true;
+        checkReset(reset1, reset2)
+      } else {
+
+      }
+    }
+
+    var handleUppress = function(e) {
+      if(e.keyCode == 52){
+        reset1 = false;
+        checkReset(reset1, reset2)
+      } else if (e.keyCode == 53){
+        reset2 = false;
+        checkReset(reset1, reset2)
+      } else {
+
+      }
+    }
+
+    window.addEventListener("keydown", handleDownpress)
+    window.addEventListener("keyup", handleUppress)
+
+    document.onloadend = function() {
+      window.score = 0;
+    }
+    
+  </script>
+  <script  src="./script.js"></script>
+
+  
+</body>
+</html>

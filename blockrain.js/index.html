@@ -1,0 +1,116 @@
+<!-- The stylesheet should go in the <head>, or be included in your CSS -->
+<head>
+  <link rel="stylesheet" href="dist/blockrain.css" />
+
+  <!-- jQuery and Blockrain.js -->
+  <script src="dist/jquery.js"></script>
+  <script src="dist/blockrain.jquery.js"></script>
+  <title>Bust-A-Block</title>
+  <style>
+    body{
+      background: #000
+    }
+
+    .game{
+      border-style: solid;
+      border-color: #fff;
+      border-width: 3px;
+    }
+
+    .logo{
+      display: block;
+      float: left;
+      width: 15vw;
+      margin-left: 15px;
+      margin-top: 25vh;
+    }
+
+    .break{
+      width: 100vw;
+      height: 20wh;
+      background: #fff;
+    }
+  </style>
+</head>
+<html>
+  <body>
+    
+    <div class="game" style="width:550px; height:690px; margin: 30px auto;"></div>
+    <div class="break">
+        <img class="logo" src="./dist/IBM_White.png" />
+    </div>
+  </body>
+
+  <script>
+
+var custom = {
+  background: '#040304',
+  backgroundGrid: '#000',
+  complexBlocks: {
+    line:     'dist/assets/blocks/custom/line.png',
+    square:   'dist/assets/blocks/custom/square.png',
+    arrow:    'dist/assets/blocks/custom/arrow.png',
+    rightHook:'dist/assets/blocks/custom/rightHook.png',
+    leftHook: 'dist/assets/blocks/custom/leftHook.png',
+    rightZag: 'dist/assets/blocks/custom/rightZag.png',
+    leftZag:  'dist/assets/blocks/custom/leftZag.png'
+  }
+}
+
+    $(".game").blockrain({
+      onGameOver: function(score) {
+        document.getElementById("finalScore").innerHTML = `Final Score: ${score}`;
+      },
+      speed: 25,
+      theme: custom,
+      blockWidth: 15,
+      autoBlockWidth: false
+    });
+
+    $(".game").blockrain('theme', custom);
+    
+    document.onkeypress = function (e) {
+    e = e || window.event;
+    if(e.keyCode == 57){
+      $(".blockrain-btn").click();
+    }
+    // use e.keyCode
+
+    var reset1 = false;
+    var reset2 = false;
+
+    var checkReset = function(reset1, reset2){
+      if(reset1 && reset2){
+        window.location.reload();
+      }
+    }
+
+    var handleDownpress = function(e){
+      if(e.keyCode == 52){
+        reset1 = true;
+        checkReset(reset1, reset2)
+      } else if (e.keyCode == 53){
+        reset2 = true;
+        checkReset(reset1, reset2)
+      } else {
+
+      }
+    }
+
+    var handleUppress = function(e) {
+      if(e.keyCode == 52){
+        reset1 = false;
+        checkReset(reset1, reset2)
+      } else if (e.keyCode == 53){
+        reset2 = false;
+        checkReset(reset1, reset2)
+      } else {
+
+      }
+    }
+
+    window.addEventListener("keydown", handleDownpress)
+    window.addEventListener("keyup", handleUppress)
+};
+  </script>
+</html>

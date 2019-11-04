@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+    
+</head>
+
+<body>
+    <div class="container">
+            <div id="score">Score: 0</div>
+            <div id="rally">Current Rally: 0</div>
+    </div>
+
+    <div id="gameOver" class="overlay">
+            <h1 id="finalScoreModal" class="modal"></h1>
+            <h2 class="modal">Press Start to play again!</h2> 
+    </div>
+
+    <div id="gameArea"></div>
+    
+    </div>
+    <script src="./index.js"></script>
+
+    <div class="break">
+        <img class="logo" src="./IBM_White.png" />
+    </div>
+
+    <script>
+        
+        document.getElementById("gameOver").style.visibility = "hidden";
+
+        document.onkeypress = function(e) {
+            if(e.keyCode == 57){
+                window.score = 0;
+                window.rally = 0;
+                window.timer = 60 * 30;
+                window.gameOver = false;
+                document.getElementById("score").innerHTML = `Score: ${window.score}`;
+                document.getElementById("rally").innerHTML = `Current Rally: ${window.rally}`;
+                document.getElementById("gameOver").style.visibility = "hidden";
+                ball = new Ball(width/2, height/2)
+                
+                computer = new Computer();
+                player = new Player();
+            }
+        }
+
+        var reset1 = false;
+    var reset2 = false;
+
+    var checkReset = function(reset1, reset2){
+      if(reset1 && reset2){
+        window.location.reload();
+      }
+    }
+
+    var handleDownpress = function(e){
+      if(e.keyCode == 52){
+        reset1 = true;
+        checkReset(reset1, reset2)
+      } else if (e.keyCode == 53){
+        reset2 = true;
+        checkReset(reset1, reset2)
+      } else {
+
+      }
+    }
+
+    var handleUppress = function(e) {
+      if(e.keyCode == 52){
+        reset1 = false;
+        checkReset(reset1, reset2)
+      } else if (e.keyCode == 53){
+        reset2 = false;
+        checkReset(reset1, reset2)
+      } else {
+
+      }
+    }
+
+    window.addEventListener("keydown", handleDownpress)
+    window.addEventListener("keyup", handleUppress)
+    </script>
+</body>

@@ -1,0 +1,62 @@
+body{
+    background: black;
+    overflow: hidden;
+}
+
+#gameArea{
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    margin: 15px auto;
+    width: 550px;
+}
+
+.logo{
+    display: block;
+    float: left;
+    width: 15vw;
+    margin-left: 15px;
+    margin-top: 25vh;
+  }
+
+  .break{
+    width: 100vw;
+    height: 20wh;
+    background: #fff;
+  }
+
+  #score{
+      display: flexbox;
+      color: white;
+  }
+
+  #rally{
+      display: flexbox;
+      color: white;
+  }
+
+  .container{
+    width: 550px;
+    margin: 0 auto;
+  }
+
+  .overlay {  
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:1000;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    text-align: center;
+  }
+
+.modal{
+    font-size: 40px;
+}
+
+#finalScoreModal{
+    margin-top: 30vh;
+    font-size: 70px;
+}
